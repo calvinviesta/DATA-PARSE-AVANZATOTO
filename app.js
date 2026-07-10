@@ -404,7 +404,7 @@ function parseWithdraw() {
   const result = []
 
   for (let i = 0; i < lines.length; i += 1) {
-    if (!/^\s*TOPJITU\s*$/.test(lines[i])) continue
+    if (!/^\s*AVANZATOTO\s*$/.test(lines[i])) continue
 
     const block = []
     for (let j = i; j < lines.length && block.length < 50; j += 1) {
