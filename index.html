@@ -539,10 +539,20 @@
   <script src="./app.js"></script>
     <script src="./compare-feature.js"></script>
 
-    <div id="full-screen-warning" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; color: white; z-index: 99999; text-align: center; padding-top: 20%; font-family: sans-serif;">
-        <h1>AKSES DILARANG!</h1>
-        <p>Panel ini tidak mengizinkan aktivitas tersebut. Silakan refresh halaman.</p>
-        <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer; font-size: 16px;">Refresh Halaman</button>
+    <div id="full-screen-warning" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #2a2a2a 0%, #000000 100%); color: #D4AF37; z-index: 99999; text-align: center; padding-top: 15%; font-family: 'Segoe UI', Arial, sans-serif; border: 15px solid #D4AF37; box-sizing: border-box;">
+        <h1 style="font-size: 60px; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px; text-shadow: 2px 2px 5px #000;">Akses Dilarang</h1>
+        <div style="width: 150px; height: 3px; background-color: #D4AF37; margin: 0 auto 30px;"></div>
+        <p style="font-size: 20px; color: #fff; max-width: 500px; margin: 0 auto 40px; line-height: 1.6;">
+            Mohon maaf, sistem keamanan kami telah mendeteksi aktivitas yang tidak diizinkan. Harap segarkan kembali sesi Anda.
+        </p>
+        <button onclick="location.reload()" 
+            style="padding: 15px 40px; cursor: pointer; font-size: 18px; font-weight: bold; 
+            background: transparent; color: #D4AF37; border: 2px solid #D4AF37; 
+            transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;"
+            onmouseover="this.style.background='#D4AF37'; this.style.color='#000';" 
+            onmouseout="this.style.background='transparent'; this.style.color='#D4AF37';">
+            Refresh Sesi
+        </button>
     </div>
 
     <script>
@@ -568,6 +578,7 @@
             }
         });
     </script>
+</body>
 </body> ```
 
 ### Apa yang diperbaiki?
