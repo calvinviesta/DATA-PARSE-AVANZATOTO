@@ -1375,3 +1375,45 @@ function escapeHtml(text) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;")
 }
+// --- 1. Fungsi Utama Peringatan (WAJIB ADA di app.js) ---
+function tampilkanPeringatan() {
+    // Pastikan ID 'full-screen-warning' sama dengan di index.html
+    document.getElementById('full-screen-warning').classList.add('show-overlay');
+}
+
+// --- 2. KODE KEAMANAN (Tempel di bawah fungsi di atas) ---
+
+// Mencegah klik kanan
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    tampilkanPeringatan();
+});
+
+// Mencegah shortcut keyboard untuk Developer Tools
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'F12') {
+        e.preventDefault();
+        tampilkanPeringatan();
+    }
+    
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J' || e.key === 'K')) {
+        e.preventDefault();
+        tampilkanPeringatan();
+    }
+    
+    if (e.ctrlKey && (e.key === 'u' || e.key === 's')) {
+        e.preventDefault();
+        tampilkanPeringatan();
+    }
+});
+
+// Deteksi jika Developer Tools terbuka
+setInterval(() => {
+    const threshold = 160;
+    const width = window.outerWidth - window.innerWidth > threshold;
+    const height = window.outerHeight - window.innerHeight > threshold;
+    
+    if (width || height) {
+        tampilkanPeringatan();
+    }
+}, 100);
