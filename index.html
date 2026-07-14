@@ -2,649 +2,542 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Parser Pro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
-  <link rel="stylesheet" href="./compare-feature.css" />
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Parser Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="./compare-feature.css" />
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 
 <body>
-  <div class="app-shell">
-    <aside class="sidebar glass">
-      <div class="brand">
-        <div class="brand-logo">AVANZATOTO.COM</div>
-      </div>
+<div class="app-shell">
+<aside class="sidebar glass">
+<div class="brand">
+<div class="brand-logo">AVANZATOTO.COM</div>
+</div>
 
-      <nav class="nav">
-        <button class="nav-btn active" data-tab="withdraw">WITHDRAW PGA</button>
-        <button class="nav-btn" data-tab="deposit">DEPOSIT PGA</button>
-        <button class="nav-btn" data-tab="wdqris">WD QRIS</button>
-        <button class="nav-btn" data-tab="dpqris">DP QRIS</button>
-        <button class="nav-btn" data-tab="admin">WITHDRAW</button>
-        <button class="nav-btn" data-tab="cashback">CASHBACK</button>
-        <button class="nav-btn" data-tab="reconcile">COIN FINDER</button>
-        <button class="nav-btn" data-tab="historycoin">HISTORY COIN</button>
-        <button class="nav-btn" data-tab="historydppga">HISTORY DP PGA</button>
-      </nav>
+<nav class="nav">
+<button class="nav-btn active" data-tab="withdraw">WITHDRAW PGA</button>
+<button class="nav-btn" data-tab="deposit">DEPOSIT PGA</button>
+<button class="nav-btn" data-tab="wdqris">WD QRIS</button>
+<button class="nav-btn" data-tab="dpqris">DP QRIS</button>
+<button class="nav-btn" data-tab="admin">WITHDRAW</button>
+<button class="nav-btn" data-tab="cashback">CASHBACK</button>
+<button class="nav-btn" data-tab="reconcile">COIN FINDER</button>
+<button class="nav-btn" data-tab="historycoin">HISTORY COIN</button>
+<button class="nav-btn" data-tab="historydppga">HISTORY DP PGA</button>
+</nav>
 
-      <div class="sidebar-controls">
-        <div class="theme-switch glass">
-          <button class="theme-btn active" id="darkModeBtn" type="button" aria-label="Dark mode">
-            <span class="theme-icon moon-icon"></span>
-          </button>
-          <button class="theme-btn" id="lightModeBtn" type="button" aria-label="Light mode">
-            <span class="theme-icon sun-icon"></span>
-          </button>
-        </div>
+<div class="sidebar-controls">
+<div class="theme-switch glass">
+<button class="theme-btn active" id="darkModeBtn" type="button" aria-label="Dark mode">
+<span class="theme-icon moon-icon"></span>
+</button>
+<button class="theme-btn" id="lightModeBtn" type="button" aria-label="Light mode">
+<span class="theme-icon sun-icon"></span>
+</button>
+</div>
 
-        <label class="color-switch glass" aria-label="Warna custom">
-          <input id="accentColorInput" type="color" value="#f5d15f" />
-          <span class="color-icon"></span>
-        </label>
+<label class="color-switch glass" aria-label="Warna custom">
+<input id="accentColorInput" type="color" value="#f5d15f" />
+<span class="color-icon"></span>
+</label>
 
-        <button class="theme-btn glass" id="toggleMenuManagerBtn" type="button" aria-label="Atur menu">
-          <span class="manage-icon">=</span>
-        </button>
-      </div>
+<button class="theme-btn glass" id="toggleMenuManagerBtn" type="button" aria-label="Atur menu">
+<span class="manage-icon">=</span>
+</button>
+</div>
 
-      <div class="menu-manager glass hidden" id="menuManager">
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="withdraw" checked />
-          <span>WITHDRAW PGA</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="deposit" checked />
-          <span>DEPOSIT PGA</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="wdqris" checked />
-          <span>WD QRIS</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="dpqris" checked />
-          <span>DP QRIS</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="admin" checked />
-          <span>WITHDRAW</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="cashback" checked />
-          <span>CASHBACK</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="reconcile" checked />
-          <span>COIN FINDER</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="historycoin" checked />
-          <span>HISTORY COIN</span>
-        </label>
-        <label class="menu-toggle-row">
-          <input type="checkbox" class="menu-visibility-toggle" data-menu-tab="historydppga" checked />
-          <span>HISTORY DP PGA</span>
-        </label>
-      </div>
-    </aside>
+<div class="menu-manager glass hidden" id="menuManager">
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="withdraw" checked />
+<span>WITHDRAW PGA</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="deposit" checked />
+<span>DEPOSIT PGA</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="wdqris" checked />
+<span>WD QRIS</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="dpqris" checked />
+<span>DP QRIS</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="admin" checked />
+<span>WITHDRAW</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="cashback" checked />
+<span>CASHBACK</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="reconcile" checked />
+<span>COIN FINDER</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="historycoin" checked />
+<span>HISTORY COIN</span>
+</label>
+<label class="menu-toggle-row">
+<input type="checkbox" class="menu-visibility-toggle" data-menu-tab="historydppga" checked />
+<span>HISTORY DP PGA</span>
+</label>
+</div>
+</aside>
 
-    <main class="main">
-      <section class="panel active" id="withdraw-panel">
-        <div class="card glass">
-          <textarea id="withdrawInput" class="textarea" placeholder="Tempel data withdraw mentah di sini..."></textarea>
+<main class="main">
+<section class="panel active" id="withdraw-panel">
+<div class="card glass">
+<textarea id="withdrawInput" class="textarea" placeholder="Tempel data withdraw mentah di sini..."></textarea>
 
-          <div class="actions">
-            <button class="btn primary" id="parseWithdrawBtn">PARSE DATA</button>
-            <button class="btn success" id="copyWithdrawBtn">COPY</button>
-            <button class="btn danger text-red" id="clearWithdrawBtn">CLEAR ALL</button>
-          </div>
+<div class="actions">
+<button class="btn primary" id="parseWithdrawBtn">PARSE DATA</button>
+<button class="btn success" id="copyWithdrawBtn">COPY</button>
+<button class="btn danger text-red" id="clearWithdrawBtn">CLEAR ALL</button>
+</div>
 
-          <div id="withdrawMessage" class="message-slot"></div>
-        </div>
+<div id="withdrawMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="withdrawResultCard">
-          <div class="stats" id="withdrawStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th data-sort-table="withdraw" data-sort-key="bank">Bank</th>
-                  <th data-sort-table="withdraw" data-sort-key="id">ID</th>
-                  <th></th>
-                  <th data-sort-table="withdraw" data-sort-key="amount">Nominal</th>
-                  <th data-sort-table="withdraw" data-sort-key="name">Name</th>
-                  <th data-sort-table="withdraw" data-sort-key="reff">Reff Number</th>
-                </tr>
-              </thead>
-              <tbody id="withdrawTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="withdrawResultCard">
+<div class="stats" id="withdrawStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-sort-table="withdraw" data-sort-key="bank">Bank</th>
+<th data-sort-table="withdraw" data-sort-key="id">ID</th>
+<th></th>
+<th data-sort-table="withdraw" data-sort-key="amount">Nominal</th>
+<th data-sort-table="withdraw" data-sort-key="name">Name</th>
+<th data-sort-table="withdraw" data-sort-key="reff">Reff Number</th>
+</tr>
+</thead>
+<tbody id="withdrawTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="wdqris-panel">
-        <div class="card glass">
-          <textarea id="wdQrisInput" class="textarea"
-            placeholder="Tempel data withdraw qris mentah di sini..."></textarea>
+<section class="panel" id="wdqris-panel">
+<div class="card glass">
+<textarea id="wdQrisInput" class="textarea"
+placeholder="Tempel data withdraw qris mentah di sini..."></textarea>
 
-          <div class="wdqris-filters">
-            <input id="wdQrisLastTrxId" class="filter-input"
-              placeholder="TRANSACTION ID TERAKHIR (contoh: AVA123456789)" autocomplete="off" />
-          </div>
+<div class="wdqris-filters">
+<input id="wdQrisLastTrxId" class="filter-input"
+placeholder="TRANSACTION ID TERAKHIR (contoh: AVA123456789)" autocomplete="off" />
+</div>
 
-          <div class="actions">
-            <button class="btn primary" id="parseWdQrisBtn">PARSE DATA</button>
-            <button class="btn success" id="copyWdQrisMemberBtn">COPY ID AMOUNT</button>
-            <button class="btn success" id="copyWdQrisTransactionBtn">COPY TRANSACTION ID</button>
-            <button class="btn danger text-red" id="clearWdQrisBtn">CLEAR ALL</button>
-          </div>
+<div class="actions">
+<button class="btn primary" id="parseWdQrisBtn">PARSE DATA</button>
+<button class="btn success" id="copyWdQrisMemberBtn">COPY ID AMOUNT</button>
+<button class="btn success" id="copyWdQrisTransactionBtn">COPY TRANSACTION ID</button>
+<button class="btn danger text-red" id="clearWdQrisBtn">CLEAR ALL</button>
+</div>
 
-          <div id="wdQrisMessage" class="message-slot"></div>
-        </div>
+<div id="wdQrisMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="wdQrisResultCard">
-          <div class="stats" id="wdQrisStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>AMOUNT</th>
-                  <th>AMOUNT</th>
-                  <th>TRANSACTION ID</th>
-                </tr>
-              </thead>
-              <tbody id="wdQrisTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="wdQrisResultCard">
+<div class="stats" id="wdQrisStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>AMOUNT</th>
+<th>AMOUNT</th>
+<th>TRANSACTION ID</th>
+</tr>
+</thead>
+<tbody id="wdQrisTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="dpqris-panel">
-        <div class="card glass">
-          <textarea id="dpQrisInput" class="textarea"
-            placeholder="Tempel data deposit qris mentah di sini..."></textarea>
+<section class="panel" id="dpqris-panel">
+<div class="card glass">
+<textarea id="dpQrisInput" class="textarea"
+placeholder="Tempel data deposit qris mentah di sini..."></textarea>
 
-          <div class="wdqris-filters">
-            <input id="dpQrisLastTrxId" class="filter-input"
-              placeholder="REFF NUMBER TERAKHIR (contoh: AVA123456789)" autocomplete="off" />
-          </div>
+<div class="wdqris-filters">
+<input id="dpQrisLastTrxId" class="filter-input"
+placeholder="REFF NUMBER TERAKHIR (contoh: AVA123456789)" autocomplete="off" />
+</div>
 
-          <div class="actions">
-            <button class="btn primary" id="parseDpQrisBtn">PARSE DATA</button>
-            <button class="btn success" id="copyDpQrisIdAmountBtn">COPY PAID ID AMOUNT</button>
-            <button class="btn success" id="copyDpQrisTransactionBtn">COPY TRANSACTION ID</button>
-            <button class="btn danger text-red" id="clearDpQrisBtn">CLEAR ALL</button>
-          </div>
+<div class="actions">
+<button class="btn primary" id="parseDpQrisBtn">PARSE DATA</button>
+<button class="btn success" id="copyDpQrisIdAmountBtn">COPY PAID ID AMOUNT</button>
+<button class="btn success" id="copyDpQrisTransactionBtn">COPY TRANSACTION ID</button>
+<button class="btn danger text-red" id="clearDpQrisBtn">CLEAR ALL</button>
+</div>
 
-          <div id="dpQrisMessage" class="message-slot"></div>
-        </div>
+<div id="dpQrisMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="dpQrisResultCard">
-          <div class="stats" id="dpQrisStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>PAID</th>
-                  <th>ID</th>
-                  <th>AMOUNT</th>
-                  <th>AMOUNT</th>
-                  <th>TRANSACTION ID</th>
-                </tr>
-              </thead>
-              <tbody id="dpQrisTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="dpQrisResultCard">
+<div class="stats" id="dpQrisStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>PAID</th>
+<th>ID</th>
+<th>AMOUNT</th>
+<th>AMOUNT</th>
+<th>TRANSACTION ID</th>
+</tr>
+</thead>
+<tbody id="dpQrisTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="deposit-panel">
-        <div class="card glass">
-          <label class="upload-box">
-            <input type="file" id="depositFile" accept=".csv" />
-            <span>PILIH FILE CSV</span>
-          </label>
+<section class="panel" id="deposit-panel">
+<div class="card glass">
+<label class="upload-box">
+<input type="file" id="depositFile" accept=".csv" />
+<span>PILIH FILE CSV</span>
+</label>
 
-          <div class="actions hidden" id="depositActions">
-            <button class="btn success" id="copyDepositIdAmountBtn">ID & NOMINAL</button>
-            <button class="btn success" id="copyDepositRefBtn">REFF NUMBER</button>
-            <button class="btn danger text-red" id="clearDepositBtn">CLEAR ALL</button>
-          </div>
+<div class="actions hidden" id="depositActions">
+<button class="btn success" id="copyDepositIdAmountBtn">ID & NOMINAL</button>
+<button class="btn success" id="copyDepositRefBtn">REFF NUMBER</button>
+<button class="btn danger text-red" id="clearDepositBtn">CLEAR ALL</button>
+</div>
 
-          <div id="depositMessage" class="message-slot"></div>
-        </div>
+<div id="depositMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="depositResultCard">
-          <div class="stats" id="depositStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th data-sort-table="deposit" data-sort-key="id">ID</th>
-                  <th data-sort-table="deposit" data-sort-key="amount">JUMLAH</th>
-                  <th data-sort-table="deposit" data-sort-key="refNumb">REFF NUMBER</th>
-                </tr>
-              </thead>
-              <tbody id="depositTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="depositResultCard">
+<div class="stats" id="depositStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-sort-table="deposit" data-sort-key="id">ID</th>
+<th data-sort-table="deposit" data-sort-key="amount">JUMLAH</th>
+<th data-sort-table="deposit" data-sort-key="refNumb">REFF NUMBER</th>
+</tr>
+</thead>
+<tbody id="depositTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="historycoin-panel">
-        <div class="card glass">
-          <label class="upload-box">
-            <input type="file" id="historyCoinFile" accept=".csv" />
-            <span>PILIH FILE CSV</span>
-          </label>
+<section class="panel" id="historycoin-panel">
+<div class="card glass">
+<label class="upload-box">
+<input type="file" id="historyCoinFile" accept=".csv" />
+<span>PILIH FILE CSV</span>
+</label>
 
-          <div class="actions hidden" id="historyCoinActions">
-            <button class="btn success" id="copyHistoryCoinBtn">COPY ID COIN</button>
-            <button class="btn danger text-red" id="clearHistoryCoinBtn">CLEAR ALL</button>
-          </div>
+<div class="actions hidden" id="historyCoinActions">
+<button class="btn success" id="copyHistoryCoinBtn">COPY ID COIN</button>
+<button class="btn danger text-red" id="clearHistoryCoinBtn">CLEAR ALL</button>
+</div>
 
-          <div id="historyCoinMessage" class="message-slot"></div>
-        </div>
+<div id="historyCoinMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="historyCoinResultCard">
-          <div class="stats" id="historyCoinStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>COIN</th>
-                </tr>
-              </thead>
-              <tbody id="historyCoinTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="historyCoinResultCard">
+<div class="stats" id="historyCoinStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>COIN</th>
+</tr>
+</thead>
+<tbody id="historyCoinTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="historydppga-panel">
-        <div class="card glass">
-          <label class="upload-box">
-            <input type="file" id="historyDpPgaFile" accept=".xlsx,.xls" />
-            <span>PILIH FILE XLSX</span>
-          </label>
+<section class="panel" id="historydppga-panel">
+<div class="card glass">
+<label class="upload-box">
+<input type="file" id="historyDpPgaFile" accept=".xlsx,.xls" />
+<span>PILIH FILE XLSX</span>
+</label>
 
-          <div class="actions hidden" id="historyDpPgaActions">
-            <button class="btn success" id="copyHistoryDpPgaRefAmountBtn">COPY REF NUMBER AMOUNT</button>
-            <button class="btn danger text-red" id="clearHistoryDpPgaBtn">CLEAR ALL</button>
-          </div>
+<div class="actions hidden" id="historyDpPgaActions">
+<button class="btn success" id="copyHistoryDpPgaRefAmountBtn">COPY REF NUMBER AMOUNT</button>
+<button class="btn danger text-red" id="clearHistoryDpPgaBtn">CLEAR ALL</button>
+</div>
 
-          <div id="historyDpPgaMessage" class="message-slot"></div>
-        </div>
+<div id="historyDpPgaMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="historyDpPgaResultCard">
-          <div class="stats" id="historyDpPgaStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>REF NUMBER</th>
-                  <th>AMOUNT</th>
-                </tr>
-              </thead>
-              <tbody id="historyDpPgaTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="historyDpPgaResultCard">
+<div class="stats" id="historyDpPgaStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>REF NUMBER</th>
+<th>AMOUNT</th>
+</tr>
+</thead>
+<tbody id="historyDpPgaTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="admin-panel">
-        <div class="card glass">
-          <textarea id="adminInput" class="textarea" placeholder="Tempel data withdraw mentah di sini..."></textarea>
+<section class="panel" id="admin-panel">
+<div class="card glass">
+<textarea id="adminInput" class="textarea" placeholder="Tempel data withdraw mentah di sini..."></textarea>
 
-          <div class="actions">
-            <button class="btn primary" id="parseAdminBtn">PARSE ADMIN DATA</button>
-            <button class="btn success" id="copyAdminBtn">COPY</button>
-            <button class="btn danger text-red" id="clearAdminBtn">CLEAR ALL</button>
-          </div>
+<div class="actions">
+<button class="btn primary" id="parseAdminBtn">PARSE ADMIN DATA</button>
+<button class="btn success" id="copyAdminBtn">COPY</button>
+<button class="btn danger text-red" id="clearAdminBtn">CLEAR ALL</button>
+</div>
 
-          <div id="adminMessage" class="message-slot"></div>
-        </div>
+<div id="adminMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="adminResultCard">
-          <div class="stats" id="adminStats"></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th data-sort-table="admin" data-sort-key="bank">Bank</th>
-                  <th data-sort-table="admin" data-sort-key="id">ID</th>
-                  <th></th>
-                  <th data-sort-table="admin" data-sort-key="amount">Amount</th>
-                  <th data-sort-table="admin" data-sort-key="name">Name</th>
-                </tr>
-              </thead>
-              <tbody id="adminTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+<div class="card glass hidden" id="adminResultCard">
+<div class="stats" id="adminStats"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th data-sort-table="admin" data-sort-key="bank">Bank</th>
+<th data-sort-table="admin" data-sort-key="id">ID</th>
+<th></th>
+<th data-sort-table="admin" data-sort-key="amount">Amount</th>
+<th data-sort-table="admin" data-sort-key="name">Name</th>
+</tr>
+</thead>
+<tbody id="adminTableBody"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      <section class="panel" id="cashback-panel">
-        <div class="card glass">
-          <label class="upload-box compact">
-            <input type="file" id="cashbackFile" accept=".csv" />
-            <span>PILIH FILE TRANSAKSI LENGKAP</span>
-          </label>
+<section class="panel" id="cashback-panel">
+<div class="card glass">
+<label class="upload-box compact">
+<input type="file" id="cashbackFile" accept=".csv" />
+<span>PILIH FILE TRANSAKSI LENGKAP</span>
+</label>
 
-          <div class="actions hidden" id="cashbackActions">
-            <button class="btn danger text-red" id="clearCashbackBtn">CLEAR ALL</button>
-          </div>
+<div class="actions hidden" id="cashbackActions">
+<button class="btn danger text-red" id="clearCashbackBtn">CLEAR ALL</button>
+</div>
 
-          <div id="cashbackMessage" class="message-slot"></div>
-        </div>
+<div id="cashbackMessage" class="message-slot"></div>
+</div>
 
-        <div class="cashback-grid hidden" id="cashbackGrid">
-          <article class="card glass cashback-card">
-            <div class="section-head inline">
-              <h3>Table 1</h3>
-              <button class="btn success small-copy" data-copy-cashback="0">COPY</button>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>LOSS AMOUNT</th>
-                  </tr>
-                </thead>
-                <tbody id="cashbackTable0"></tbody>
-              </table>
-            </div>
-          </article>
+<div class="cashback-grid hidden" id="cashbackGrid">
+<article class="card glass cashback-card">
+<div class="section-head inline">
+<h3>Table 1</h3>
+<button class="btn success small-copy" data-copy-cashback="0">COPY</button>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>LOSS AMOUNT</th>
+</tr>
+</thead>
+<tbody id="cashbackTable0"></tbody>
+</table>
+</div>
+</article>
 
-          <article class="card glass cashback-card">
-            <div class="section-head inline">
-              <h3>Table 2</h3>
-              <button class="btn success small-copy" data-copy-cashback="1">COPY</button>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>LOSS AMOUNT</th>
-                  </tr>
-                </thead>
-                <tbody id="cashbackTable1"></tbody>
-              </table>
-            </div>
-          </article>
+<article class="card glass cashback-card">
+<div class="section-head inline">
+<h3>Table 2</h3>
+<button class="btn success small-copy" data-copy-cashback="1">COPY</button>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>LOSS AMOUNT</th>
+</tr>
+</thead>
+<tbody id="cashbackTable1"></tbody>
+</table>
+</div>
+</article>
 
-          <article class="card glass cashback-card">
-            <div class="section-head inline">
-              <h3>Table 3</h3>
-              <button class="btn success small-copy" data-copy-cashback="2">COPY</button>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>LOSS AMOUNT</th>
-                  </tr>
-                </thead>
-                <tbody id="cashbackTable2"></tbody>
-              </table>
-            </div>
-          </article>
-        </div>
-      </section>
+<article class="card glass cashback-card">
+<div class="section-head inline">
+<h3>Table 3</h3>
+<button class="btn success small-copy" data-copy-cashback="2">COPY</button>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>LOSS AMOUNT</th>
+</tr>
+</thead>
+<tbody id="cashbackTable2"></tbody>
+</table>
+</div>
+</article>
+</div>
+</section>
 
-      <section class="panel" id="reconcile-panel">
-        <div class="card glass">
-          <div class="compare-input-grid" id="compareInputGrid">
-            <article class="compare-input-card">
-              <div class="section-head compact">
-                <div>
-                  <h3>ADMIN</h3>
-                </div>
-              </div>
-              <textarea id="compareReportInput" class="textarea small compare-textarea"></textarea>
-            </article>
+<section class="panel" id="reconcile-panel">
+<div class="card glass">
+<div class="compare-input-grid" id="compareInputGrid">
+<article class="compare-input-card">
+<div class="section-head compact">
+<div>
+<h3>ADMIN</h3>
+</div>
+</div>
+<textarea id="compareReportInput" class="textarea small compare-textarea"></textarea>
+</article>
 
-            <article class="compare-input-card">
-              <div class="section-head compact">
-                <div>
-                  <h3>DOC</h3>
-                </div>
-              </div>
-              <textarea id="compareDocInput" class="textarea small compare-textarea"></textarea>
-            </article>
-          </div>
+<article class="compare-input-card">
+<div class="section-head compact">
+<div>
+<h3>DOC</h3>
+</div>
+</div>
+<textarea id="compareDocInput" class="textarea small compare-textarea"></textarea>
+</article>
+</div>
 
-          <div class="actions compare-actions">
-            <button class="btn danger text-red" id="clearCompareBtn">CLEAR ALL</button>
-          </div>
+<div class="actions compare-actions">
+<button class="btn danger text-red" id="clearCompareBtn">CLEAR ALL</button>
+</div>
 
-          <div id="compareMessage" class="message-slot"></div>
-        </div>
+<div id="compareMessage" class="message-slot"></div>
+</div>
 
-        <div class="card glass hidden" id="compareResultCard">
-          <div class="stats" id="compareStats"></div>
+<div class="card glass hidden" id="compareResultCard">
+<div class="stats" id="compareStats"></div>
 
-          <div class="compare-grid hidden">
-            <article class="compare-sheet compare-sheet-dark">
-              <div class="compare-sheet-head">
-                <h3>ADMIN</h3>
-                <span class="compare-sheet-note">Tabel abu</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>COIN</th>
-                      <th>X</th>
-                    </tr>
-                  </thead>
-                  <tbody id="compareReportListBody"></tbody>
-                </table>
-              </div>
-            </article>
+<div class="compare-grid hidden">
+<article class="compare-sheet compare-sheet-dark">
+<div class="compare-sheet-head">
+<h3>ADMIN</h3>
+<span class="compare-sheet-note">Tabel abu</span>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>COIN</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody id="compareReportListBody"></tbody>
+</table>
+</div>
+</article>
 
-            <article class="compare-sheet compare-sheet-dark">
-              <div class="compare-sheet-head">
-                <h3>DOC</h3>
-                <span class="compare-sheet-note">Tabel abu</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>COIN</th>
-                      <th>X</th>
-                    </tr>
-                  </thead>
-                  <tbody id="compareDocListBody"></tbody>
-                </table>
-              </div>
-            </article>
-          </div>
+<article class="compare-sheet compare-sheet-dark">
+<div class="compare-sheet-head">
+<h3>DOC</h3>
+<span class="compare-sheet-note">Tabel abu</span>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>COIN</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody id="compareDocListBody"></tbody>
+</table>
+</div>
+</article>
+</div>
 
-          <div class="compare-grid hidden">
-            <article class="compare-sheet compare-sheet-light">
-              <div class="compare-sheet-head">
-                <h3>TABLE ADMIN</h3>
-                <span class="compare-sheet-note">Tabel putih</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>COIN</th>
-                      <th>X</th>
-                    </tr>
-                  </thead>
-                  <tbody id="compareReportSummaryBody"></tbody>
-                </table>
-              </div>
-            </article>
+<div class="compare-grid hidden">
+<article class="compare-sheet compare-sheet-light">
+<div class="compare-sheet-head">
+<h3>TABLE ADMIN</h3>
+<span class="compare-sheet-note">Tabel putih</span>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>COIN</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody id="compareReportSummaryBody"></tbody>
+</table>
+</div>
+</article>
 
-            <article class="compare-sheet compare-sheet-light">
-              <div class="compare-sheet-head">
-                <h3>TABLE DOC</h3>
-                <span class="compare-sheet-note">Tabel putih</span>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>COIN</th>
-                      <th>X</th>
-                    </tr>
-                  </thead>
-                  <tbody id="compareDocSummaryBody"></tbody>
-                </table>
-              </div>
-            </article>
-          </div>
+<article class="compare-sheet compare-sheet-light">
+<div class="compare-sheet-head">
+<h3>TABLE DOC</h3>
+<span class="compare-sheet-note">Tabel putih</span>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>COIN</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody id="compareDocSummaryBody"></tbody>
+</table>
+</div>
+</article>
+</div>
 
-          <div class="compare-diff-wrap">
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>STATUS</th>
-                    <th>ID</th>
-                    <th>COIN</th>
-                    <th>ADMIN</th>
-                    <th>DOC</th>
-                    <th>SELISIH</th>
-                  </tr>
-                </thead>
-                <tbody id="compareDiffBody"></tbody>
-              </table>
-            </div>
-            <div class="compare-empty hidden" id="compareDiffEmpty">Tidak ada selisih</div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+<div class="compare-diff-wrap">
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>STATUS</th>
+<th>ID</th>
+<th>COIN</th>
+<th>ADMIN</th>
+<th>DOC</th>
+<th>SELISIH</th>
+</tr>
+</thead>
+<tbody id="compareDiffBody"></tbody>
+</table>
+</div>
+<div class="compare-empty hidden" id="compareDiffEmpty">Tidak ada selisih</div>
+</div>
+</div>
+</section>
+</main>
+</div>
 
-  <script src="./app.js"></script>
-    <script src="./compare-feature.js"></script>
-
-    <div id="full-screen-warning" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #2a2a2a 0%, #000000 100%); color: #D4AF37; z-index: 99999; text-align: center; padding-top: 15%; font-family: 'Segoe UI', Arial, sans-serif; border: 15px solid #D4AF37; box-sizing: border-box;">
-        <h1 style="font-size: 60px; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px; text-shadow: 2px 2px 5px #000;">Akses Dilarang</h1>
-        <div style="width: 150px; height: 3px; background-color: #D4AF37; margin: 0 auto 30px;"></div>
-        <p style="font-size: 20px; color: #fff; max-width: 500px; margin: 0 auto 40px; line-height: 1.6;">
-            Mohon maaf, sistem keamanan kami telah mendeteksi aktivitas yang tidak diizinkan. Harap segarkan kembali sesi Anda.
-        </p>
-        <button onclick="location.reload()" 
-            style="padding: 15px 40px; cursor: pointer; font-size: 18px; font-weight: bold; 
-            background: transparent; color: #D4AF37; border: 2px solid #D4AF37; 
-            transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;"
-            onmouseover="this.style.background='#D4AF37'; this.style.color='#000';" 
-            onmouseout="this.style.background='transparent'; this.style.color='#D4AF37';">
-            Refresh Sesi
-        </button>
-    </div>
-
-    <script>
-        function tampilkanPeringatan() {
-            document.getElementById('full-screen-warning').style.display = 'block';
-        }
-
-        // 1. Mencegah Klik Kanan
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            tampilkanPeringatan();
-        });
-
-        // 2. Mencegah pintasan keyboard
-        document.addEventListener('keydown', (e) => {
-            if (
-                e.key === 'F12' || 
-                (e.ctrlKey && (e.key === 'u' || e.key === 's')) || 
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J'))
-            ) {
-                e.preventDefault();
-                tampilkanPeringatan();
-            }
-        });
-    </script>
-  <div id="full-screen-warning">
-        <h1 class="gold-title">Akses Dibatasi</h1>
-        <p class="gold-desc">Sistem keamanan mendeteksi upaya akses yang tidak sah. Harap segarkan halaman untuk melanjutkan.</p>
-        <button class="btn-gold" onclick="location.reload()">Refresh Halaman</button>
-    </div>
-
-    <script>
-        function tampilkanPeringatan() {
-            document.getElementById('full-screen-warning').classList.add('show-overlay');
-        }
-
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            tampilkanPeringatan();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (
-                e.key === 'F12' || 
-                (e.ctrlKey && (e.key === 'u' || e.key === 's')) || 
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J'))
-            ) {
-                e.preventDefault();
-                tampilkanPeringatan();
-            }
-        });
-    </script>
-  <!DOCTYPE html>
-<html lang="id">
-<head>
-    <!-- ... head Anda ... -->
-</head>
-<body>
-
-    <!-- 1. SEMUA KONTEN PANEL ANDA ADA DI SINI -->
-    <div class="main-content">
-        <h1>Dashboard Panel</h1>
-        <!-- ... -->
-    </div>
-
-    <!-- 2. LETAKKAN DI SINI (Tepat di atas </body>) -->
-    <div id="full-screen-warning">
-        <h1 class="gold-title-pain">ACCESS DENIED</h1>
-        <p class="gold-desc-pain">TINDAKAN ANDA TERDETEKSI. ANDA DIBLOKIR!</p>
-        <button class="btn-gold-pain" onclick="location.reload()">KEMBALI KE PANEL</button>
-    </div>
-
+<script src="./app.js"></script>
+<script src="./compare-feature.js"></script>
 </body>
-</html>
-</body> ```
 
-### Tips Tambahan:
-* Jika Anda memiliki file JavaScript terpisah (misalnya `app.js`), Anda bisa saja memasukkan kode tersebut ke dalam file `app.js`. Namun, jika Anda memasukkannya ke dalam file terpisah, pastikan file tersebut di-*load* dengan atribut `defer` agar skrip tidak berjalan sebelum elemen HTML `full-screen-warning` selesai dimuat:
-  `<script src="./app.js" defer></script>`
-* Jika Anda menaruhnya langsung di dalam HTML (seperti contoh di atas), posisi **sebelum `</body>`** adalah yang paling aman agar fungsi `getElementById` tidak gagal.
-
-Apakah kodenya sudah berhasil muncul di layar saat Anda mencoba menekan F12 sekarang?
-</body>
-</body> ```
-
-### Apa yang diperbaiki?
-* **Struktur:** Memindahkan `div` overlay ke **sebelum** `</body>`. Browser akan mengabaikan elemen apa pun yang ditaruh setelah tag `</body>`.
-* **Penyatuan Skrip:** Menghapus duplikasi fungsi `tampilkanPeringatan` agar kode lebih ringan dan tidak error.
-* **Penambahan Pemicu:** Menambahkan `e.key === 'J'` di bagian `Ctrl+Shift` untuk menangkap pintasan *Console* yang sering digunakan untuk *inspect*.
-
-**Tips Tambahan:**
-Jika setelah menggunakan kode di atas masih terasa "tidak berfungsi", pastikan file Anda **disimpan (save)** dan lakukan **Hard Refresh** pada *browser* (tekan `Ctrl + F5` atau `Cmd + Shift + R` di keyboard) untuk memastikan *browser* memuat versi terbaru dari kode Anda, bukan menyimpan *cache* yang lama.
-
-Apakah sekarang saat Anda menekan tombol F12 atau melakukan klik kanan, layar sudah berubah menjadi hitam dengan pesan tersebut?
 </html>
